@@ -81,7 +81,7 @@
             this.chatMessage.Name = "chatMessage";
             this.chatMessage.Size = new System.Drawing.Size(487, 27);
             this.chatMessage.TabIndex = 4;
-            this.chatMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chatMessage_KeyDown);
+            this.chatMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChatMessage_KeyDown);
             // 
             // chatSend
             // 
@@ -91,7 +91,7 @@
             this.chatSend.TabIndex = 5;
             this.chatSend.Text = "Send";
             this.chatSend.UseVisualStyleBackColor = true;
-            this.chatSend.Click += new System.EventHandler(this.chatSend_Click);
+            this.chatSend.Click += new System.EventHandler(this.ChatSend_Click);
             // 
             // groupBox1
             // 
@@ -135,6 +135,7 @@
             this.c1.Text = "c1";
             this.c1.UseVisualStyleBackColor = true;
             this.c1.Visible = false;
+            this.c1.Click += new System.EventHandler(this.C1_Click);
             // 
             // c2
             // 
@@ -146,6 +147,7 @@
             this.c2.Text = "c2";
             this.c2.UseVisualStyleBackColor = true;
             this.c2.Visible = false;
+            this.c2.Click += new System.EventHandler(this.C2_Click);
             // 
             // c3
             // 
@@ -157,6 +159,7 @@
             this.c3.Text = "c3";
             this.c3.UseVisualStyleBackColor = true;
             this.c3.Visible = false;
+            this.c3.Click += new System.EventHandler(this.C3_Click);
             // 
             // c4
             // 
@@ -168,6 +171,7 @@
             this.c4.Text = "c4";
             this.c4.UseVisualStyleBackColor = true;
             this.c4.Visible = false;
+            this.c4.Click += new System.EventHandler(this.C4_Click);
             // 
             // c5
             // 
@@ -179,6 +183,7 @@
             this.c5.Text = "c5";
             this.c5.UseVisualStyleBackColor = true;
             this.c5.Visible = false;
+            this.c5.Click += new System.EventHandler(this.C5_Click);
             // 
             // c6
             // 
@@ -190,6 +195,7 @@
             this.c6.Text = "c6";
             this.c6.UseVisualStyleBackColor = true;
             this.c6.Visible = false;
+            this.c6.Click += new System.EventHandler(this.C6_Click);
             // 
             // c7
             // 
@@ -201,6 +207,7 @@
             this.c7.Text = "c7";
             this.c7.UseVisualStyleBackColor = true;
             this.c7.Visible = false;
+            this.c7.Click += new System.EventHandler(this.C7_Click);
             // 
             // c8
             // 
@@ -212,6 +219,7 @@
             this.c8.Text = "c8";
             this.c8.UseVisualStyleBackColor = true;
             this.c8.Visible = false;
+            this.c8.Click += new System.EventHandler(this.C8_Click);
             // 
             // c9
             // 
@@ -223,6 +231,7 @@
             this.c9.Text = "c9";
             this.c9.UseVisualStyleBackColor = true;
             this.c9.Visible = false;
+            this.c9.Click += new System.EventHandler(this.C9_Click);
             // 
             // c10
             // 
@@ -234,6 +243,7 @@
             this.c10.Text = "c10";
             this.c10.UseVisualStyleBackColor = true;
             this.c10.Visible = false;
+            this.c10.Click += new System.EventHandler(this.C10_Click);
             // 
             // c11
             // 
@@ -245,6 +255,7 @@
             this.c11.Text = "c11";
             this.c11.UseVisualStyleBackColor = true;
             this.c11.Visible = false;
+            this.c11.Click += new System.EventHandler(this.C11_Click);
             // 
             // c12
             // 
@@ -256,6 +267,7 @@
             this.c12.Text = "c12";
             this.c12.UseVisualStyleBackColor = true;
             this.c12.Visible = false;
+            this.c12.Click += new System.EventHandler(this.C12_Click);
             // 
             // addContact
             // 
@@ -265,7 +277,7 @@
             this.addContact.TabIndex = 0;
             this.addContact.Text = "Add Contact";
             this.addContact.UseVisualStyleBackColor = true;
-            this.addContact.Click += new System.EventHandler(this.addContact_Click);
+            this.addContact.Click += new System.EventHandler(this.AddContact_Click);
             // 
             // Form1
             // 
@@ -283,6 +295,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "hotline-messenger";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.contactsPanel.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace hotline_messenger
@@ -10,12 +12,34 @@ namespace hotline_messenger
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+
+
+
         [STAThread]
+
+
+        
         static void Main()
         {
+
+            //Thread t = new Thread(new com().StartListening);
+            //t.Start();
+            var c = new Com();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var f = new Form1(c);
+            Application.Run(f);
+
+            f.Dispose();
+
+            
+        }
+
+        internal static void UpdateChatbox(Form1 f, string v)
+        {
+            f.chatBox.Text = v;
         }
     }
 }

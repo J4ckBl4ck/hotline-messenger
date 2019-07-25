@@ -51,13 +51,44 @@ namespace hotline_messenger
             }
             catch (Exception e)
             {
+                Trace.WriteLine(e.GetType());
                 if (e.GetType().ToString() == "System.IO.FileNotFoundException")
                 {
                     File.Create(CONFIG_PATH);
                 }
-                Debug.WriteLine(e.GetType());
             }
             return contacts;
+        }
+
+        internal static string GetContactByHostname(string name)
+        {
+            string contactName = "";
+            try
+            {
+                var file = new StreamReader(CONFIG_PATH);
+                string line;
+                
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Contains(name))
+                    {
+                        contactName = line.Split(';')[0];
+                        break;
+                    }
+                }
+                file.Close();
+                file.Dispose();
+
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.GetType());
+                if (e.GetType().ToString() == "System.IO.FileNotFoundException")
+                {
+                    File.Create(CONFIG_PATH);
+                }
+            }
+            return contactName;
         }
     }
 }

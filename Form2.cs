@@ -22,19 +22,21 @@ namespace hotline_messenger
             this.caller = c;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if(textBox1.Text != "" && textBox2.Text != "")
             {
                 Configuration.AddContact(textBox1.Text + ";" + textBox2.Text);
             } else
             {
-                this.caller.displayChatMessage("Unable to add contact, please fill in contact name and client name!", "!");
+                this.caller.SendMessage("Unable to add contact, please fill in contact name and client name!", "!");
             }
+            this.caller.UpdateContacts();
+            this.caller.SetFocusToMessagebox();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
