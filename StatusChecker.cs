@@ -62,11 +62,6 @@ namespace hotline_messenger
             KillAllRunningThreads();
             StartAllThreads();
         }
-
-        internal void StartChecking()
-        {
-
-        }
     }
 
     internal class Checker
