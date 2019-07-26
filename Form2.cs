@@ -12,21 +12,23 @@ namespace hotline_messenger
     public partial class Form2 : Form
     {
         Form1 caller;
+        Configuration conf;
         public Form2()
         {
             InitializeComponent();
         }
-        public Form2(Form1 c)
+        internal Form2(Form1 c, Configuration configuration)
         {
             InitializeComponent();
             this.caller = c;
+            this.conf = configuration;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
             if(textBox1.Text != "" && textBox2.Text != "")
             {
-                Configuration.AddContact(textBox1.Text + ";" + textBox2.Text);
+                conf.AddContact(textBox1.Text + ";" + textBox2.Text);
             } else
             {
                 this.caller.SendMessage("Unable to add contact, please fill in contact name and client name!", "!");

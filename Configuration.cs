@@ -12,14 +12,21 @@ namespace hotline_messenger
     {
         
         const string CONFIG_PATH = ".\\hotline-messenger.cfg";
+        readonly string myHostname;
 
 
         public Configuration()
         {
+            this.myHostname = Environment.GetEnvironmentVariable("COMPUTERNAME");
         }
 
-        public static void AddContact(string contact)
+        public void AddContact(string contact)
         {
+            if (contact.Contains(this.myHostname))
+            {
+                return;
+            }
+
             try
             {
                 var file = File.AppendText(CONFIG_PATH);
@@ -34,7 +41,7 @@ namespace hotline_messenger
             }
         }
 
-        public static List<string> GetContacts()
+        public List<string> GetContacts()
         {
             var contacts = new List<string>();
             try
@@ -43,7 +50,10 @@ namespace hotline_messenger
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    contacts.Add(line);
+                    if (!line.Contains(myHostname))
+                    {
+                        contacts.Add(line);
+                    }
                 }
                 file.Close();
                 file.Dispose();
@@ -57,6 +67,7 @@ namespace hotline_messenger
                     File.Create(CONFIG_PATH);
                 }
             }
+
             return contacts;
         }
 

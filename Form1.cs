@@ -12,6 +12,7 @@ namespace hotline_messenger
     public partial class Form1 : Form
     {
         Button[] cButtons;
+        Configuration conf;
         List<string> contacts;
         public Dictionary<string, string> chats;
         public string activeChat = "";
@@ -25,9 +26,10 @@ namespace hotline_messenger
         {
             InitializeComponent();
 
+            conf = new Configuration();
             this.c = c;
             this.c.SetForm(this);
-            this.contacts = Configuration.GetContacts();
+            this.contacts = conf.GetContacts();
             this.chats = new Dictionary<string, string>();
             cButtons = new []{ c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 };
             this.lastActive = DateTime.Now;
@@ -166,7 +168,7 @@ namespace hotline_messenger
 
         private void AddContact_Click(object sender, EventArgs e)
         {
-            var addContactForm = new Form2(this);
+            var addContactForm = new Form2(this, conf);
             addContactForm.Show();
         }
         
@@ -339,7 +341,7 @@ namespace hotline_messenger
         
         public void UpdateContacts()
         {
-            this.contacts = Configuration.GetContacts();
+            this.contacts = conf.GetContacts();
             DisplayContacts();
         }
 
@@ -356,7 +358,9 @@ namespace hotline_messenger
                 var username = b.Text;
                 if (lastStatusReport.ContainsKey(username))
                 {
-                    if((lastStatusReport[username] - d).TotalSeconds > 30)
+                    DateTime lastReport;
+                    lastStatusReport.TryGetValue(username, out lastReport);
+                    if ((d - lastReport).TotalSeconds > 15)
                     {
                         b.BackgroundImage = Properties.Resources.Offline;
                     }
