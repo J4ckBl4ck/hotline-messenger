@@ -70,11 +70,25 @@ namespace hotline_messenger
 
             if (activeChat == contact){
                 chatBox.Text = chats[activeChat];
+            } else
+            {
+                MarkChatToHaveNewMessage(contact);
             }
             
 
             chatBox.SelectionStart = chatBox.Text.Length;
             chatBox.ScrollToCaret();
+        }
+
+        private void MarkChatToHaveNewMessage(string contact)
+        {
+            foreach(var b in cButtons)
+            {
+                if(b.Name == contact)
+                {
+                    b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
+                }
+            }
         }
 
         private string GetHostnameFromMessage(string msg)
@@ -300,11 +314,16 @@ namespace hotline_messenger
         private void ActivateButton(object sender)
         {
             var btn = (Button)sender;
+            var oldActiveChat = activeChat;
             ActivateChat(btn.Text);
             foreach (var b in cButtons)
             {
-                b.Height = 23;
-                b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if(b.Name == oldActiveChat)
+                {
+                    b.Height = 23;
+                    b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+                
             }
             //btn.BackColor = System.Drawing.Color.Green;
             btn.Height = 30;
