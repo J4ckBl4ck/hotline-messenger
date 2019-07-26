@@ -27,6 +27,13 @@ namespace hotline_messenger
             base.OnClosed(e);
         }
 
+        protected override void OnGotFocus(EventArgs e)
+        {
+            FlashWindow.Stop(this);
+            base.OnGotFocus(e);
+        }
+        
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -316,7 +323,13 @@ namespace hotline_messenger
             this.contactsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.GotFocus += new System.EventHandler(Form1_GotFocus);
 
+        }
+
+        private void Form1_GotFocus(object sender, EventArgs e)
+        {
+            FlashWindow.Stop(this);
         }
 
         #endregion

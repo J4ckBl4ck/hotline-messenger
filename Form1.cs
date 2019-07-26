@@ -70,6 +70,11 @@ namespace hotline_messenger
 
             chats[contact] += msg+"\r\n";
 
+            if (!this.Focused)
+            {
+                FlashWindow.Start(this);
+            }
+
             if (activeChat == contact){
                 chatBox.Text = chats[activeChat];
             } else
