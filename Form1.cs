@@ -84,9 +84,9 @@ namespace hotline_messenger
         {
             foreach(var b in cButtons)
             {
-                if(b.Name == contact)
+                if(b.Text == contact)
                 {
-                    b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
+                    b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
@@ -314,20 +314,20 @@ namespace hotline_messenger
         private void ActivateButton(object sender)
         {
             var btn = (Button)sender;
-            var oldActiveChat = activeChat;
-            ActivateChat(btn.Text);
+            
             foreach (var b in cButtons)
             {
-                if(b.Name == oldActiveChat)
+                if(b.Text == activeChat)
                 {
                     b.Height = 23;
                     b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
                 
             }
-            //btn.BackColor = System.Drawing.Color.Green;
             btn.Height = 30;
             btn.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            ActivateChat(btn.Text);
 
             SetFocusToMessagebox();
         }

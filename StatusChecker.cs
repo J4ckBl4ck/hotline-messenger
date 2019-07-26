@@ -141,6 +141,9 @@ namespace hotline_messenger
                     {
                         Debug.WriteLine(e.StackTrace);
                     }
+                } catch (Exception e)
+                {
+                    continue;
                 }
                 
             }
