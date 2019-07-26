@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,9 +85,6 @@
     <None Include="resources\Away.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\Away-a.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="resources\Away-a.png" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\Online-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chat.ico" />
+    <Content Include="Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

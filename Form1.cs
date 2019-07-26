@@ -17,6 +17,9 @@ namespace hotline_messenger
         public string activeChat = "";
         Com c;
         public bool isAlive;
+        internal StatusChecker sc;
+        private DateTime lastActive;
+        internal Dictionary<string, DateTime> lastStatusReport;
 
         public Form1(Com c)
         {
@@ -27,6 +30,8 @@ namespace hotline_messenger
             this.contacts = Configuration.GetContacts();
             this.chats = new Dictionary<string, string>();
             cButtons = new []{ c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 };
+            this.lastActive = DateTime.Now;
+            this.lastStatusReport = new Dictionary<string, DateTime>();
 
             if (this.contacts.Count > 12)
             {
@@ -42,10 +47,10 @@ namespace hotline_messenger
                 chats[cont.Split(';')[0]] = "";
             }
 
-            var scheck = new StatusChecker(contacts, this);
+            this.sc = new StatusChecker(contacts, this);
 
             Thread t = new Thread(c.Run);
-            Thread statusChecker = new Thread(scheck.Run);
+            Thread statusChecker = new Thread(sc.Run);
             t.Start();
             statusChecker.Start();
             
@@ -57,6 +62,7 @@ namespace hotline_messenger
             if(contact != null)
             {
                 msg = msg.Replace(contact + "|@|", "");
+                msg = msg.Replace(">>>", "<<<");
                 contact = Configuration.GetContactByHostname(contact);
             }
 
@@ -92,6 +98,51 @@ namespace hotline_messenger
             }
         }
 
+        internal void ProcessResultFromStatusCheck(string result)
+        {
+
+            var time = DateTime.Now;
+            var user = result.Split('|')[0];
+            var status = result.Split('|')[1];
+
+            if (lastStatusReport.ContainsKey(user))
+            {
+                lastStatusReport[user] = time;
+            } else
+            {
+                lastStatusReport.Add(user, time);
+            }
+
+            Button b = getButtonForUser(user);
+
+            if (status == "online")
+            {
+                var res = Properties.Resources.Online;
+                b.BackgroundImage = res;
+            } else
+            {
+                var res = Properties.Resources.Away;
+                b.BackgroundImage = res;
+            }
+        }
+
+        private Button getButtonForUser(string user)
+        {
+            foreach(var b in cButtons)
+            {
+                if(b.Text == user)
+                {
+                    return b;
+                }
+            }
+            return null;
+        }
+
+        internal string GetLastSendTimeDiff()
+        {
+            return (DateTime.Now - lastActive).TotalSeconds.ToString(); ;
+        }
+
         private void ChatSend_Click(object sender, EventArgs e)
         {
 
@@ -114,6 +165,7 @@ namespace hotline_messenger
                 var fullMessage = "";
                 var cname = Environment.GetEnvironmentVariable("COMPUTERNAME");
                 var time = DateTime.Now;
+                lastActive = time;
                 if (!text.Contains("<<<"))
                 {
                     fullMessage = cname +"|@|"+time.ToShortTimeString() + " " + splitSign + " " + text + "\r\n";
@@ -131,15 +183,15 @@ namespace hotline_messenger
                 var host = GetHostnameFromUser(activeChat);
                 try
                 {
-                    client.Connect(host, 8888);
                     client.SendTimeout = 3;
                     client.ReceiveTimeout = 3;
+                    client.Connect(host, 8888);
                     StreamWriter w = new StreamWriter(client.GetStream());
                     w.WriteLine(fullMessage);
                     w.Flush();
                 }
                 catch (Exception e)  {
-                    Debug.WriteLine(e.StackTrace);
+                    Debug.WriteLine(e.Message);
                 }
                 
             }
@@ -251,11 +303,13 @@ namespace hotline_messenger
             ActivateChat(btn.Text);
             foreach (var b in cButtons)
             {
-
-                b.UseVisualStyleBackColor = true;
+                b.Height = 23;
+                b.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             }
-            btn.BackColor = System.Drawing.Color.Green;
-            
+            //btn.BackColor = System.Drawing.Color.Green;
+            btn.Height = 30;
+            btn.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             SetFocusToMessagebox();
         }
 
@@ -275,5 +329,23 @@ namespace hotline_messenger
             this.isAlive = true;
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            var d = DateTime.Now;
+            foreach(var b in cButtons)
+            {
+                var username = b.Text;
+                if (lastStatusReport.ContainsKey(username))
+                {
+                    if((lastStatusReport[username] - d).TotalSeconds > 30)
+                    {
+                        b.BackgroundImage = Properties.Resources.Offline;
+                    }
+                } else
+                {
+                    b.BackgroundImage = Properties.Resources.Offline;
+                }
+            }
+        }
     }
 }

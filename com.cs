@@ -4,6 +4,7 @@ using System.Threading;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Net;
 
 namespace hotline_messenger
 {
@@ -27,11 +28,16 @@ namespace hotline_messenger
 
             while (!form.IsDisposed)
             {
-                if (chatServer.Pending())
+
+                if (!chatServer.Pending())
                 {
-                    var client = chatServer.AcceptTcpClient();
-                    GetMessage(client);
+                    Thread.Sleep(50);
+                    continue;
                 }
+
+                var client = chatServer.AcceptTcpClient();
+                GetMessage(client);
+
             }
         }
 
@@ -41,14 +47,18 @@ namespace hotline_messenger
             {
                 var r = new StreamReader(cl.GetStream());
                 var line = r.ReadLine();
-                SendMessage(line);
-            } catch (Exception e) {
-                Debug.WriteLine(e.StackTrace);
-                
-            }
-            
-        }
+                r.Close();
 
+                SendMessage(line);
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.StackTrace);
+
+            }
+
+        }
 
         public void SendMessage(string msg)
         {
@@ -58,8 +68,7 @@ namespace hotline_messenger
             }
 
             form.Invoke((Action)delegate { form.AccepMessageFromCom(msg); });
-
-            //form.AccepMessageFromCom(msg);
+            
         }
 
         public void SetForm(Form1 f)

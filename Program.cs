@@ -32,6 +32,7 @@ namespace hotline_messenger
             var f = new Form1(c);
             Application.Run(f);
 
+            f.Close();
             f.Dispose();
 
             

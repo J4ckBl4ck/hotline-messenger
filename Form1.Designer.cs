@@ -1,4 +1,6 @@
-﻿namespace hotline_messenger
+﻿using System;
+
+namespace hotline_messenger
 {
     partial class Form1
     {
@@ -19,6 +21,11 @@
             }
             base.Dispose(disposing);
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            this.sc.ShutDown();
+            base.OnClosed(e);
+        }
 
         #region Windows Form Designer generated code
 
@@ -28,6 +35,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label2 = new System.Windows.Forms.Label();
             this.chatBox = new System.Windows.Forms.RichTextBox();
@@ -48,6 +56,7 @@
             this.c11 = new System.Windows.Forms.Button();
             this.c12 = new System.Windows.Forms.Button();
             this.addContact = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.contactsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -139,6 +148,7 @@
             // 
             // c2
             // 
+            this.c2.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.c2.Location = new System.Drawing.Point(3, 32);
             this.c2.Name = "c2";
             this.c2.Size = new System.Drawing.Size(182, 23);
@@ -279,6 +289,12 @@
             this.addContact.UseVisualStyleBackColor = true;
             this.addContact.Click += new System.EventHandler(this.AddContact_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AcceptButton = this.chatSend;
@@ -323,6 +339,7 @@
         private System.Windows.Forms.Button c10;
         private System.Windows.Forms.Button c11;
         private System.Windows.Forms.Button c12;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

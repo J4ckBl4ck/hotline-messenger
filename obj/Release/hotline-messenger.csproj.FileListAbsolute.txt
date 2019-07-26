@@ -1,0 +1,10 @@
+C:\Development\hotline-messenger\bin\Release\hotline-messenger.exe
+C:\Development\hotline-messenger\bin\Release\hotline-messenger.pdb
+C:\Development\hotline-messenger\obj\Release\hotline-messenger.csprojAssemblyReference.cache
+C:\Development\hotline-messenger\obj\Release\hotline_messenger.Form1.resources
+C:\Development\hotline-messenger\obj\Release\hotline_messenger.Form2.resources
+C:\Development\hotline-messenger\obj\Release\hotline_messenger.Properties.Resources.resources
+C:\Development\hotline-messenger\obj\Release\hotline-messenger.csproj.GenerateResource.cache
+C:\Development\hotline-messenger\obj\Release\hotline-messenger.csproj.CoreCompileInputs.cache
+C:\Development\hotline-messenger\obj\Release\hotline-messenger.exe
+C:\Development\hotline-messenger\obj\Release\hotline-messenger.pdb
