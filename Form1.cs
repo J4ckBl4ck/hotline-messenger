@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Tulpep.NotificationWindow;
 
 namespace hotline_messenger
 {
@@ -24,6 +26,19 @@ namespace hotline_messenger
 
         public Form1(Com c)
         {
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
+            {
+                string resourceName = new AssemblyName(args.Name).Name + ".dll";
+                string resource = Array.Find(this.GetType().Assembly.GetManifestResourceNames(), element => element.EndsWith(resourceName));
+
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
+                {
+                    Byte[] assemblyData = new Byte[stream.Length];
+                    stream.Read(assemblyData, 0, assemblyData.Length);
+                    return Assembly.Load(assemblyData);
+                }
+            };
+
             InitializeComponent();
 
             conf = new Configuration();
@@ -72,7 +87,11 @@ namespace hotline_messenger
 
             if (!this.Focused)
             {
-                FlashWindow.Start(this);
+                FlashWindow.Flash(this);
+                PopupNotifier n = new PopupNotifier();
+                n.TitleText = "Hotline Messenger";
+                n.ContentText = "New Message received";
+                n.Popup();
             }
 
             if (activeChat == contact){

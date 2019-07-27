@@ -119,5 +119,15 @@ namespace hotline_messenger.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Tulpep_NotificationWindow {
+            get {
+                object obj = ResourceManager.GetObject("Tulpep_NotificationWindow", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -26,12 +26,6 @@ namespace hotline_messenger
             this.sc.ShutDown();
             base.OnClosed(e);
         }
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            FlashWindow.Stop(this);
-            base.OnGotFocus(e);
-        }
         
 
         #region Windows Form Designer generated code
