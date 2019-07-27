@@ -46,13 +46,13 @@ namespace hotline_messenger
             this.c.SetForm(this);
             this.contacts = conf.GetContacts();
             this.chats = new Dictionary<string, string>();
-            cButtons = new []{ c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 };
+            cButtons = new []{ c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 };
             this.lastActive = DateTime.Now;
             this.lastStatusReport = new Dictionary<string, DateTime>();
 
-            if (this.contacts.Count > 12)
+            if (this.contacts.Count > 10)
             {
-                SendMessage("This application doesn't support more than 12 contacts, please check your config!","!!!");
+                SendMessage("This application doesn't support more than 10 contacts, please check your config!","!!!");
             } else
             {
                 DisplayContacts();
@@ -195,7 +195,36 @@ namespace hotline_messenger
             var addContactForm = new Form2(this, conf);
             addContactForm.Show();
         }
-        
+
+        public void BroedcastMessage(List<string> clients, string text)
+        {
+            
+            var cname = Environment.GetEnvironmentVariable("COMPUTERNAME");
+            var time = DateTime.Now;
+            lastActive = time;
+            var fullMessage = cname + "|@|" + time.ToShortTimeString() + " >>> " + text + "\r\n";
+            TcpClient client;
+
+            foreach (string c in clients)
+            {
+                client = new TcpClient();
+                try
+                {
+                    client.SendTimeout = 3;
+                    client.ReceiveTimeout = 3;
+                    client.Connect(c, 8888);
+                    StreamWriter w = new StreamWriter(client.GetStream());
+                    w.WriteLine(fullMessage);
+                    w.Flush();
+                    client = null;
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+            }
+        }
+
 
         public void SendMessage(string text, string splitSign = ">>>")
         {
@@ -327,16 +356,6 @@ namespace hotline_messenger
             ActivateButton(sender);
         }
 
-        private void C11_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-        }
-
-        private void C12_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-        }
-
         private void ActivateButton(object sender)
         {
             var btn = (Button)sender;
@@ -393,6 +412,12 @@ namespace hotline_messenger
                     b.BackgroundImage = Properties.Resources.Offline;
                 }
             }
+        }
+
+        private void BtnBroadcast_Click(object sender, EventArgs e)
+        {
+            var broadcast = new BroadcastForm(this);
+            broadcast.Show();
         }
     }
 }

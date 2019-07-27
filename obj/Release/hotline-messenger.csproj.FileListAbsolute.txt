@@ -8,3 +8,4 @@ C:\Development\hotline-messenger\obj\Release\hotline-messenger.csproj.GenerateRe
 C:\Development\hotline-messenger\obj\Release\hotline-messenger.csproj.CoreCompileInputs.cache
 C:\Development\hotline-messenger\obj\Release\hotline-messenger.exe
 C:\Development\hotline-messenger\obj\Release\hotline-messenger.pdb
+C:\Development\hotline-messenger\obj\Release\hotline_messenger.BroadcastForm.resources

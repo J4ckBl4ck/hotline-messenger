@@ -54,10 +54,9 @@ namespace hotline_messenger
             this.c8 = new System.Windows.Forms.Button();
             this.c9 = new System.Windows.Forms.Button();
             this.c10 = new System.Windows.Forms.Button();
-            this.c11 = new System.Windows.Forms.Button();
-            this.c12 = new System.Windows.Forms.Button();
             this.addContact = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnBroadcast = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.contactsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -110,7 +109,7 @@ namespace hotline_messenger
             this.groupBox1.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(198, 425);
+            this.groupBox1.Size = new System.Drawing.Size(198, 377);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contacts";
@@ -127,12 +126,10 @@ namespace hotline_messenger
             this.contactsPanel.Controls.Add(this.c8);
             this.contactsPanel.Controls.Add(this.c9);
             this.contactsPanel.Controls.Add(this.c10);
-            this.contactsPanel.Controls.Add(this.c11);
-            this.contactsPanel.Controls.Add(this.c12);
             this.contactsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.contactsPanel.Location = new System.Drawing.Point(7, 68);
+            this.contactsPanel.Location = new System.Drawing.Point(7, 58);
             this.contactsPanel.Name = "contactsPanel";
-            this.contactsPanel.Size = new System.Drawing.Size(185, 351);
+            this.contactsPanel.Size = new System.Drawing.Size(185, 309);
             this.contactsPanel.TabIndex = 1;
             // 
             // c1
@@ -256,30 +253,6 @@ namespace hotline_messenger
             this.c10.Visible = false;
             this.c10.Click += new System.EventHandler(this.C10_Click);
             // 
-            // c11
-            // 
-            this.c11.Location = new System.Drawing.Point(3, 293);
-            this.c11.Name = "c11";
-            this.c11.Size = new System.Drawing.Size(182, 23);
-            this.c11.TabIndex = 10;
-            this.c11.TabStop = false;
-            this.c11.Text = "c11";
-            this.c11.UseVisualStyleBackColor = true;
-            this.c11.Visible = false;
-            this.c11.Click += new System.EventHandler(this.C11_Click);
-            // 
-            // c12
-            // 
-            this.c12.Location = new System.Drawing.Point(3, 322);
-            this.c12.Name = "c12";
-            this.c12.Size = new System.Drawing.Size(182, 23);
-            this.c12.TabIndex = 11;
-            this.c12.TabStop = false;
-            this.c12.Text = "c12";
-            this.c12.UseVisualStyleBackColor = true;
-            this.c12.Visible = false;
-            this.c12.Click += new System.EventHandler(this.C12_Click);
-            // 
             // addContact
             // 
             this.addContact.Location = new System.Drawing.Point(6, 16);
@@ -296,6 +269,16 @@ namespace hotline_messenger
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnBroadcast
+            // 
+            this.btnBroadcast.Location = new System.Drawing.Point(22, 397);
+            this.btnBroadcast.Name = "btnBroadcast";
+            this.btnBroadcast.Size = new System.Drawing.Size(186, 48);
+            this.btnBroadcast.TabIndex = 7;
+            this.btnBroadcast.Text = "Broadcast Message";
+            this.btnBroadcast.UseVisualStyleBackColor = true;
+            this.btnBroadcast.Click += new System.EventHandler(this.BtnBroadcast_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.chatSend;
@@ -303,6 +286,7 @@ namespace hotline_messenger
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBroadcast);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chatSend);
             this.Controls.Add(this.chatMessage);
@@ -313,11 +297,11 @@ namespace hotline_messenger
             this.Name = "Form1";
             this.Text = "hotline-messenger";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.GotFocus += new System.EventHandler(this.Form1_GotFocus);
             this.groupBox1.ResumeLayout(false);
             this.contactsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.GotFocus += new System.EventHandler(Form1_GotFocus);
 
         }
 
@@ -344,9 +328,8 @@ namespace hotline_messenger
         private System.Windows.Forms.Button c8;
         private System.Windows.Forms.Button c9;
         private System.Windows.Forms.Button c10;
-        private System.Windows.Forms.Button c11;
-        private System.Windows.Forms.Button c12;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnBroadcast;
     }
 }
 

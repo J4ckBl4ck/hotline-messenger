@@ -8,3 +8,4 @@ C:\Development\hotline-messenger\obj\Debug\hotline-messenger.csproj.CoreCompileI
 C:\Development\hotline-messenger\obj\Debug\hotline-messenger.exe
 C:\Development\hotline-messenger\obj\Debug\hotline-messenger.pdb
 C:\Development\hotline-messenger\obj\Debug\hotline_messenger.Form2.resources
+C:\Development\hotline-messenger\obj\Debug\hotline_messenger.BroadcastForm.resources
