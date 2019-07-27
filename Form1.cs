@@ -85,13 +85,10 @@ namespace hotline_messenger
 
             chats[contact] += msg+"\r\n";
 
-            if (!this.Focused)
+            if (ApplicationHasFocus())
             {
                 FlashWindow.Flash(this);
-                PopupNotifier n = new PopupNotifier();
-                n.TitleText = "Hotline Messenger";
-                n.ContentText = "New Message received";
-                n.Popup();
+                ShowPopup();
             }
 
             if (activeChat == contact){
@@ -104,6 +101,36 @@ namespace hotline_messenger
 
             chatBox.SelectionStart = chatBox.Text.Length;
             chatBox.ScrollToCaret();
+        }
+
+        private bool ApplicationHasFocus()
+        {
+            if(chatBox.Focused || this.Focused || AnyButtonFocused())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool AnyButtonFocused()
+        {
+            foreach (var button in cButtons)
+            {
+                if (button.Focused)
+                {
+                    return true;
+                }
+                    
+            }
+            return false;
+        }
+
+        private void ShowPopup()
+        {
+            PopupNotifier n = new PopupNotifier();
+            n.TitleText = "Hotline Messenger";
+            n.ContentText = "New Message received";
+            n.Popup();
         }
 
         private void MarkChatToHaveNewMessage(string contact)

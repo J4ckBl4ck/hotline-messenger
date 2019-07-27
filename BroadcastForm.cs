@@ -81,7 +81,7 @@ namespace hotline_messenger
 
 
 
-            info += ". The message was: "+text;
+            info += ".\r\n The message was: " + text + "\r\n\r\n";
 
             return info;
         }
