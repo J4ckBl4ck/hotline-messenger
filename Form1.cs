@@ -52,7 +52,7 @@ namespace hotline_messenger
 
             if (this.contacts.Count > 10)
             {
-                SendMessage("This application doesn't support more than 10 contacts, please check your config!","!!!");
+                chatBox.Text = "This application doesn't support more than 10 contacts, please check your config!";
             } else
             {
                 DisplayContacts();
@@ -130,6 +130,14 @@ namespace hotline_messenger
             PopupNotifier n = new PopupNotifier();
             n.TitleText = "Hotline Messenger";
             n.ContentText = "New Message received";
+            n.Popup();
+        }
+
+        internal void ShowErrorPopup(string message)
+        {
+            PopupNotifier n = new PopupNotifier();
+            n.TitleText = "Hotline Messenger";
+            n.ContentText = message;
             n.Popup();
         }
 
@@ -213,7 +221,8 @@ namespace hotline_messenger
         private void ChatSend_Click(object sender, EventArgs e)
         {
 
-            SendMessage(chatMessage.Text);
+            Thread s = new Thread(()=>SendMessage(chatMessage.Text));
+            s.Start();
             
         }
 
@@ -225,7 +234,6 @@ namespace hotline_messenger
 
         public void BroadcastMessage(List<string> clients, string text)
         {
-            
             if(text == "")
             {
                 return;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace hotline_messenger
@@ -60,7 +61,10 @@ namespace hotline_messenger
                 }
             }
 
-            f.BroadcastMessage(clientsToSendMessageTo, textBox1.Text);
+
+            Thread s = new Thread(() => f.BroadcastMessage(clientsToSendMessageTo, textBox1.Text));
+            s.Start();
+
             broadcastLog.Text += BuildBroadcastInfo(usernames, textBox1.Text);
             textBox1.Text = "";
 

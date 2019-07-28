@@ -31,7 +31,7 @@ namespace hotline_messenger
                 conf.AddContact(textBox1.Text + ";" + textBox2.Text);
             } else
             {
-                this.caller.SendMessage("Unable to add contact, please fill in contact name and client name!", "!");
+                this.caller.ShowErrorPopup("Unable to add contact, please fill in contact name and client name!");
             }
             this.caller.UpdateContacts();
             this.caller.SetFocusToMessagebox();
