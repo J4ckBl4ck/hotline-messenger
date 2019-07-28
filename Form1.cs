@@ -223,9 +223,14 @@ namespace hotline_messenger
             addContactForm.Show();
         }
 
-        public void BroedcastMessage(List<string> clients, string text)
+        public void BroadcastMessage(List<string> clients, string text)
         {
             
+            if(text == "")
+            {
+                return;
+            }
+
             var cname = Environment.GetEnvironmentVariable("COMPUTERNAME");
             var time = DateTime.Now;
             lastActive = time;

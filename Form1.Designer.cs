@@ -73,7 +73,7 @@ namespace hotline_messenger
             // 
             // chatBox
             // 
-            this.chatBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chatBox.BackColor = System.Drawing.Color.FromArgb(255, 105, 158, 244);
             this.chatBox.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatBox.Location = new System.Drawing.Point(220, 29);
             this.chatBox.Name = "chatBox";
@@ -284,7 +284,7 @@ namespace hotline_messenger
             this.AcceptButton = this.chatSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(255, 105, 158, 244);
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnBroadcast);
             this.Controls.Add(this.groupBox1);

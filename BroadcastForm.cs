@@ -60,7 +60,7 @@ namespace hotline_messenger
                 }
             }
 
-            f.BroedcastMessage(clientsToSendMessageTo, textBox1.Text);
+            f.BroadcastMessage(clientsToSendMessageTo, textBox1.Text);
             broadcastLog.Text += BuildBroadcastInfo(usernames, textBox1.Text);
             textBox1.Text = "";
 

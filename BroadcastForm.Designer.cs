@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BroadcastForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.contactsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -208,6 +209,7 @@
             // 
             // broadcastLog
             // 
+            this.broadcastLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(158)))), ((int)(((byte)(244)))));
             this.broadcastLog.Location = new System.Drawing.Point(217, 37);
             this.broadcastLog.Name = "broadcastLog";
             this.broadcastLog.Size = new System.Drawing.Size(571, 374);
@@ -237,11 +239,13 @@
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(158)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.broadcastLog);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BroadcastForm";
             this.Text = "Broadcast Message";
             this.groupBox1.ResumeLayout(false);
