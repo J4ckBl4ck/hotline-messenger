@@ -285,8 +285,9 @@ namespace hotline_messenger
                 }
                 
                 chats[activeChat] += message;
-                chatMessage.Text = "";
-                chatBox.Text = chats[activeChat];
+
+                this.Invoke((Action)delegate { this.chatMessage.Text = ""; });
+                this.Invoke((Action)delegate { chatBox.Text = chats[activeChat]; });
 
                 var client = new TcpClient();
                 var host = GetHostnameFromUser(activeChat);

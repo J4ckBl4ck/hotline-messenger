@@ -45,6 +45,7 @@ namespace hotline_messenger
         {
             List<string> clientsToSendMessageTo = new List<string>();
             List<string> usernames = new List<string>();
+            var text = textBox1.Text;
 
             foreach(var b in boxes)
             {
@@ -61,8 +62,7 @@ namespace hotline_messenger
                 }
             }
 
-
-            Thread s = new Thread(() => f.BroadcastMessage(clientsToSendMessageTo, textBox1.Text));
+            Thread s = new Thread(() => f.BroadcastMessage(clientsToSendMessageTo, text));
             s.Start();
 
             broadcastLog.Text += BuildBroadcastInfo(usernames, textBox1.Text);
